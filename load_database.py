@@ -96,7 +96,8 @@ def registrar_produtores_no_filme(lista_produtores: List[str], filme: Movie) -> 
     :return: None
     """
     for nome_produtor in lista_produtores:
-        nome_produtor = nome_produtor.lstrip().replace(',', '')  # remove espaço em branco no inicio da string caso contenha
+        nome_produtor = nome_produtor.lstrip().replace(',',
+                                                       '')  # remove espaço em branco no inicio da string caso contenha
         obj_produtor_do_filme = registrar_produtor(nome_produtor)
         obj_prod_movie = registrar_produtor_no_filme(obj_produtor_do_filme, filme)
 
@@ -231,10 +232,10 @@ def processa_lista_produtor_intervalo_encontra_intervalo(lista_prod_inter: List[
     """
     if maior_intervalo:
         lista_organizada_por_intervalo = sorted(lista_prod_inter, key=lambda x: x.maior_intervalo,
-                                                      reverse=maior_intervalo)  # ordena utilizando maior intervalo
+                                                reverse=maior_intervalo)  # ordena utilizando maior intervalo
     else:
         lista_organizada_por_intervalo = sorted(lista_prod_inter, key=lambda x: x.menor_intervalo,
-                                                      reverse=maior_intervalo)  # ordena utilizando menor intervalo
+                                                reverse=maior_intervalo)  # ordena utilizando menor intervalo
     sub_lista_maior_intervalo = list()
     if lista_organizada_por_intervalo:
         # o ordenamento é revertido pois nessa etatapa do código pois se considera que o valor que será procurado
@@ -319,8 +320,3 @@ def atualiza_objeto_produtor_intervalo_vitorias(obj_prod_inter_vit: ProdutorInte
     """
     obj_prod_inter_vit.processa_ano_vitoria(ano_vitoria)
 
-
-
-if __name__ == '__main__':
-    #carregar_arquivo_no_banco(path_arquivo_importacao)
-    processa_lista_de_filmes_e_transforma_em_produtores()
