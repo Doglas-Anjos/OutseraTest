@@ -259,7 +259,8 @@ def processa_lista_produtor_intervalo_encontra_intervalo(lista_prod_inter: List[
                     sub_lista_maior_intervalo.append(obj_prod_inter_vit)
                 else:
                     break
-        return sub_lista_maior_intervalo
+
+    return sub_lista_maior_intervalo
 
 
 def transforma_lista_produtor_intervalo_em_dict(lista_maior_intervalo: List[ProdutorIntervaloVitorias],
