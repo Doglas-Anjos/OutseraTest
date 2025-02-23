@@ -2,3 +2,4 @@ venv/
 .idea/
 *.db
 *.csv
+__pycache__/
