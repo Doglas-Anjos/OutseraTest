@@ -7,7 +7,10 @@ from defines import path_arquivo_importacao
 app = Flask(__name__)
 api = Api(app)
 
-carregar_arquivo_no_banco(path_arquivo_importacao)
+try:
+    carregar_arquivo_no_banco(path_arquivo_importacao)
+except Exception as e:
+    print(f"Houve um problema ao inserir arquivo banco: -> \n {e}")
 
 
 @app.route('/')
