@@ -20,6 +20,8 @@ def carregar_arquivo_no_banco(caminho_do_arquivo) -> None:
     # padroniza a coluna boolana de vencedor do premio
     df_filmes[campo_bool_vencedor] = [transforma_coluna_vencedor_em_booleano(valor)
                                       for valor in df_filmes[campo_bool_vencedor]]
+    if not verifica_integridade_do_dataframe_de_filmes(df_filmes):
+        raise "Houve um problema de integridade do arquivo, por favor verifique o arquivo e envie novamente"
     for index, row in df_filmes.iterrows():
         obj_filme = registrar_filme(row[campo_titulo], row[campo_ano], row[campo_bool_vencedor])
 
@@ -28,6 +30,24 @@ def carregar_arquivo_no_banco(caminho_do_arquivo) -> None:
 
         registrar_produtores_no_filme(lista_de_produtores, obj_filme)
         registrar_studios_no_filme(lista_de_studios, obj_filme)
+
+
+def verifica_integridade_do_dataframe_de_filmes(df_filmes: pd.DataFrame) -> bool():
+    """
+    Função para verificar se o excel enviado pelo usuário está integro, pensei em dois testes possiveis, o primeiro para
+    o ano, caso ele não seja inteiro, que está implementado e funcional. O segundo teste seria para não ser possível
+    haver 2 vencedores para o mesmo ano, onde na planilha enviada em 1986, 1990 e 2015 há mais de um vencedor, por não
+    saber se isso era feature ou bug deixei comentado as linhas que verificam isso
+    :param df_filmes: dataframe resultado da leitura do arquivo
+    :return: bool -> se True passou no teste de integridade, caso False reprovou
+    """
+    # verificação se todos os valores na coluna de ano são inteiros
+    if not all(isinstance(x, int) for x in df_filmes[campo_ano]):
+        return False
+    # contador_vencedores = df_filmes[df_filmes[campo_bool_vencedor]].groupby(campo_ano).size()
+    # if (contador_vencedores > 1).any():
+    #    return False
+    return True
 
 
 def registrar_produtor(nome_produtor: str) -> Producer:
