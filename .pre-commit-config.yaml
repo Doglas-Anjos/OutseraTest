@@ -5,4 +5,5 @@ repos:
         name: Testes de integração
         entry: python -m unittest discover -s tests
         language: system
+        pass_filenames: false
         stages: [push]
