@@ -2,3 +2,4 @@ peewee~=3.17.9
 pandas==2.0.3
 flask~=3.0.3
 flask_restful==0.3.10
+Flask-Caching==2.3.1
