@@ -25,6 +25,19 @@ def encontra_filmes():
     return jsonify(dict_processamento), 200
 
 
+@app.errorhandler(500)
+def handle_500_error(error):
+    response = {
+        "error": "Internal Server Error",
+        "message": "An unexpected error occurred on the server."
+    }
+    return jsonify(response), 500
+
+
+@app.errorhandler(404)
+def url_nao_econtrada(error):
+    return jsonify({"error": "URL não encontrada!"}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
