@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: run-tests
         name: Testes de integração
-        entry: python -m unittest discover -s tests
+        entry: python -m unittest discover -s tests -p "*test*.py"
         language: system
         pass_filenames: false
         stages: [push]
