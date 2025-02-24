@@ -131,5 +131,5 @@ obteve dois prêmios mais rápido
 - **404 Gone**: Qualquer outra url acessada que não está implementada, gerará um erro 404
   ```json
   {
-    "error": ""URL não encontrada!"
+    "error": "URL não encontrada!"
   }
