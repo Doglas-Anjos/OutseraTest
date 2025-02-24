@@ -3,6 +3,6 @@ repos:
     hooks:
       - id: run-tests
         name: Testes de integração
-        entry: python -m unittest FlaskIntegrationTest.py
+        entry: python -m unittest discover -s tests
         language: system
         stages: [push]
