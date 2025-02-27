@@ -12,11 +12,6 @@ app.config['CACHE_TYPE'] = 'simple'
 app.config['CACHE_DEFAULT_TIMEOUT'] = 60
 cache = Cache(app)
 
-try:
-    carregar_arquivo_no_banco(path_arquivo_importacao)
-except Exception as e:
-    print(f"Houve um problema ao inserir arquivo banco: -> \n {e}")
-
 
 @app.route('/producers', methods=['GET'])
 @cache.cached()
@@ -40,4 +35,8 @@ def url_nao_econtrada(error):
 
 
 if __name__ == '__main__':
+    try:
+        carregar_arquivo_no_banco(path_arquivo_importacao)
+    except Exception as e:
+        print(f"Houve um problema ao inserir arquivo banco: -> \n {e}")
     app.run()
